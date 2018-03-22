@@ -8,8 +8,7 @@ while True:
         card_1 = input( "card 1" ":" "").lower().strip()
         card_2 = input( "card 2" ":" "").lower().strip()
         card_3 = input( "card 3"":" "").lower().strip()
-        card_dict= {'A':'1', '2':'2','3':'3','4':'4','5':'5', '6':'6', '7':'7', '8':'8','9':'9','J':'10','Q':'10','K':'10'}    # while True:
-    	    # user_choice = input('rock, paper, or scissors? ').lower().strip()
+        card_dict= {'A':'1', '2':'2','3':'3','4':'4','5':'5', '6':'6', '7':'7', '8':'8','9':'9','J':'10','Q':'10','K':'10'}    
         if card_1 in card_dict.keys() and card_2 in card_dict.keys() and card_3 in card_dict.keys():
                     break
 
