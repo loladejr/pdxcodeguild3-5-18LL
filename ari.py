@@ -38,6 +38,6 @@ ladescale=ari_scale[ari]
 
 #
 
-print("The ARI for gettysburg-address.txt is:" + str(ari))
+print("The ARI for gettysburg-address.txt is:" + str(ari))#book name is not really gettysburg address. 
 print("This corresponds to a" +" " +ladescale['grade_level'] +" " "level of difficulty")
 print("that is suitable for an average person"+" "+ladescale['ages']+"years old.")
