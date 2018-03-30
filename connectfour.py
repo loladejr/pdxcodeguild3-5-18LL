@@ -30,9 +30,12 @@ class Connectfour(object):
 
         print("hello")
     def checkloc(self):
-        with open('connect-four-moves.rtf', 'r') as connect:
-            connect=connect.read()
-        for num in range(len(connect)):
+        with open('connect-four-moves.txt', 'r') as connect:
+            connect=connect.read().split()
+        for num in connect:
+            print(num)
+            num=num.strip("")
+            num=int(num)
             if num%2==0:
                 piece='Y'
                 self.yellow_team.append
