@@ -28,28 +28,34 @@ class Connectfour(object):
         self.yellow_team = []
         self.red_team = []
 
-        print("hello")
+
     def checkloc(self):
         with open('connect-four-moves.txt', 'r') as connect:
             connect=connect.read().split()
         for num in connect:
-            print(num)
+
             num=num.strip("")
-            num=int(num)
+            try:
+                num=int(num)
+            except ValueError:
+                continue
             if num%2==0:
                 piece='Y'
                 self.yellow_team.append
-                print("check 2")
+
             else:
                 piece='R'
                 self.red_team.append
-        print(str(self.board))
-        for i in range(len(self.board)-1,0,-1):
-            if self.board[i][num-1] =='O':
-                    self.board[i][num-1]=piece
-                    break
 
-
+            for i in range(len(self.board)-1,-1,-1):
+                if self.board[i][num-1] =='O':
+                        self.board[i][num-1]=piece
+                        break
+    def print_board(self):
+        for row in range(len(self.board)):
+            for cell in self.board[row]:
+                print (cell, end='|')
+            print()
 
 
     def __repr__(self):
@@ -61,3 +67,4 @@ if __name__ == '__main__':
     board = Connectfour()
     board.checkloc()
     print(board)
+    board.print_board()
