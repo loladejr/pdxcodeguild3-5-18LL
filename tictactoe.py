@@ -92,6 +92,7 @@ class GameBoard:
         for row in self.board:
             if any(item==' ' for item in row):
                 return False
+        return True
 
     def game_over(self):
         return self.check_win() or self.is_full()
@@ -150,10 +151,10 @@ if __name__ == '__main__':
                         print("Invalid move. Please choose a column [1-7] that isn't full.")
 
             if not board.is_full():
-                print("test")
+
                 print(f"Game over! Winner: {board.check_win()}")
             else:
-                print("test")
+                
                 print(f"Game over! No one wins!")
 
             while True:
