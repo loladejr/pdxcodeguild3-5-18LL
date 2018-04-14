@@ -22,7 +22,12 @@ def calculator(pace=None,distance=None, time=None):
         distance = time/pace  #this conversion is for all unit of time converted to seconds.
         return distance
     elif not time:
-        time=distance/pace
+
+        time4=distance * pace
+        time1=time4//3600
+        time2=time4//60
+        time3=time4%60
+        time=str(time1)+'H'+':'+str(time2)+'M'+':'+str(time3)+'S'
         return time
 
 # def conversions():
@@ -107,81 +112,36 @@ def run():
 
     if rundecision in ['distance', 'd']:
 
-        while True:
-            pacemin=input("Enter what pace you want to run/ you ran in :00(min):")#user pace in min
-            pacesec=input("Enter what pace you want to run/ you ran in :00(secs):")#user pace in sec
-            try:
-                pacemin=int(pacemin)
-                pacesec=int(pacesec)
-                if  0 <= pacemin <= 59 and 0 <= pacesec <=59:
-                    pacetotal=(to_seconds(pacemin,'min')) + (to_seconds(pacesec,'s'))
-                    pacetotal=int(pacetotal)
-                    break
-            except :
-                    print("your pace is entered incorrectly please enter in this format 00(min):00(secs) e.g 07:30:")
-
-
-        while True:
-            paceunit=input("Enter unit of your run pace mile, meter, yards or kilometer:")
-            try:
-                if paceunit in [ 'mile','mi','km','kilometer','y','yards','yard','meters','m']:
-                    break
-            except:
-                print("your pace unit is entered incorrectly please enter any one of these units shown.  'mile','mi','km','kilometer','y','yards','yard','meters','m'")#exception to reengage user to enter the right units
-
-        while True:
-            timehr= input("Input your  hour(s) run time in 00(hr):")
-            timemin=input("Input your minute(s) run time in 00(min):")
-            timesec=input("Input your second(s) run time in 00(secs):")
-            try:
-                timehr=int(timehr)
-                timemin=int(timemin)
-                timesec=int(timesec)
-                if 00 <= timehr <= 59 and 00 <= timemin <=59 and 00 <= timesec <=59:
-
-                    timehr=to_seconds(timehr,'hr')#hrs converted to seconds
-
-                    timemin=to_seconds(timemin,'min')#mins converted to seconds
-
-                    timesec=to_seconds(timesec,'s')#seconds converted to seconds
-                    timetotal=timehr+timemin+timesec
-                    timetotal=int(timetotal)
-
-                    break
-            except:
-                print("your time is entered incorrectly please enter in this format 00(hr):00(min):00(secs) e.g 1(hr):30(min):0(sec). Time must be an integer")
-        distance=calculator(distance=None,pace=pacetotal,time=timetotal)
-        return str(distance) + paceunit
-
-    elif rundecision == 'pace' or 'p':
-        distance=input("Enter what distance you will cover/covered in OO:")#user distance in ints
-        while True:
+            while True:
+                pacemin=input("Enter what pace you want to run/ you ran in :00(min):")#user pace in min
+                pacesec=input("Enter what pace you want to run/ you ran in :00(secs):")#user pace in sec
                 try:
-                    distance=int(distance)
-                    if  0 <= distance <= 999:
-
+                    pacemin=int(pacemin)
+                    pacesec=int(pacesec)
+                    if  0 <= pacemin <= 59 and 0 <= pacesec <=59:
+                        pacetotal=(to_seconds(pacemin,'min')) + (to_seconds(pacesec,'s'))
+                        pacetotal=int(pacetotal)
                         break
                 except :
-                    print("your distance needs to be an integer between 0-999")
+                        print("your pace is entered incorrectly please enter in this format 00(min):00(secs) e.g 07:30:")
 
 
-        while True:
-                distanceunit=input("Enter what distance unit you ran/will run   'mile','mi','km','kilometer','y','yards','yard','meters','m':")#user units
-
+            while True:
+                paceunit=input("Enter unit of your run pace mile, meter, yards or kilometer:")
                 try:
-                    if distanceunit in ['mile','mi','km','kilometer','y','yards','yard','meters','m']:
+                    if paceunit in [ 'mile','mi','km','kilometer','y','yards','yard','meters','m']:
                         break
-                except :
-                    print("your distance unit is entered incorrectly please enter any one of these units shown.  'mile','mi','km','kilometer','y','yards','yard','meters','m'")#exception to reengage user to enter the right units
+                except:
+                    print("your pace unit is entered incorrectly please enter any one of these units shown.  'mile','mi','km','kilometer','y','yards','yard','meters','m'")#exception to reengage user to enter the right units
 
-        while True:
+            while True:
                 timehr= input("Input your  hour(s) run time in 00(hr):")
                 timemin=input("Input your minute(s) run time in 00(min):")
                 timesec=input("Input your second(s) run time in 00(secs):")
                 try:
-                    timehr=float(timehr)
-                    timemin=float(timemin)
-                    timesec=float(timesec)
+                    timehr=int(timehr)
+                    timemin=int(timemin)
+                    timesec=int(timesec)
                     if 00 <= timehr <= 59 and 00 <= timemin <=59 and 00 <= timesec <=59:
 
                         timehr=to_seconds(timehr,'hr')#hrs converted to seconds
@@ -190,34 +150,125 @@ def run():
 
                         timesec=to_seconds(timesec,'s')#seconds converted to seconds
                         timetotal=timehr+timemin+timesec
-
-
+                        timetotal=int(timetotal)
 
                         break
                 except:
                     print("your time is entered incorrectly please enter in this format 00(hr):00(min):00(secs) e.g 1(hr):30(min):0(sec). Time must be an integer")
+            distance=calculator(distance=None,pace=pacetotal,time=timetotal)
+            return str(distance) + paceunit
 
-        timeoutput=input("Enter what time unit you want to calculate your pace in 'hr'(h),'min'(m),'sec'(s):")
-        print("ringer")
-        while True:
+    elif rundecision in ['time' or 't']:
+            print("test")
+            distance=input("Enter what distance you will cover/covered in OO:")#user distance in ints
+            while True:
+                    try:
+                        distance=int(distance)
+                        if  0 <= distance <= 999:
+
+                            break
+                    except :
+                        print("your distance needs to be an integer between 0-999")
+
+
+            while True:
+                    distanceunit=input("Enter what distance unit you ran/will run   'mile','mi','km','kilometer','y','yards','yard','meters','m':")#user units
+
+                    try:
+                        if distanceunit in ['mile','mi','km','kilometer','y','yards','yard','meters','m']:
+                            print("test")
+                            break
+                    except :
+                        print("your distance unit is entered incorrectly please enter any one of these units shown.  'mile','mi','km','kilometer','y','yards','yard','meters','m'")#exception to reengage user to enter the right units
+            while True:
+                pacemin=input("Enter what pace you want to run/ you ran in :00(min):")#user pace in min
+                pacesec=input("Enter what pace you want to run/ you ran in :00(secs):")#user pace in sec
                 try:
-                    if timeoutput in ['hr','h','min','m','sec']:
-                        timetotal=from_seconds(timetotal,timeoutput)
+                    pacemin=int(pacemin)
+                    pacesec=int(pacesec)
+                    if  0 <= pacemin <= 59 and 0 <= pacesec <=59:
+                        pacetotal=(to_seconds(pacemin,'min')) + (to_seconds(pacesec,'s'))
+                        pacetotal=int(pacetotal)
+                        break
+                except :
+                        print("your pace is entered incorrectly please enter in this format 00(min):00(secs) e.g 07:30:")
 
+
+            while True:
+                paceunit=input("Enter unit of your run pace mile, meter, yards or kilometer:")
+                try:
+                    if paceunit in [ 'mile','mi','km','kilometer','y','yards','yard','meters','m']:
                         break
                 except:
-                    print("Please enter either of the units in the format below 'hr','h','min','m','sec'")
+                    print("your pace unit is entered incorrectly please enter any one of these units shown.  'mile','mi','km','kilometer','y','yards','yard','meters','m'")#exception to reengage user to enter the right units
 
-        pace=calculator(distance=distance,pace=None,time=timetotal)
-        return str(pace)
+            time=calculator(distance=distance,pace=pacetotal,time=None)
+            return str(time)
+            
+    elif rundecision in ['pace' or 'p']:
+            distance=input("Enter what distance you will cover/covered in OO:")#user distance in ints
+            while True:
+                    try:
+                        distance=int(distance)
+                        if  0 <= distance <= 999:
 
+                            break
+                    except:
+                        print("your distance needs to be an integer between 0-999")
+
+
+            while True:
+                    distanceunit=input("Enter what distance unit you ran/will run   'mile','mi','km','kilometer','y','yards','yard','meters','m':")#user units
+
+                    try:
+                        if distanceunit in ['mile','mi','km','kilometer','y','yards','yard','meters','m']:
+                            break
+                    except :
+                        print("your distance unit is entered incorrectly please enter any one of these units shown.  'mile','mi','km','kilometer','y','yards','yard','meters','m'")#exception to reengage user to enter the right units
+
+            while True:
+                    timehr= input("Input your  hour(s) run time in 00(hr):")
+                    timemin=input("Input your minute(s) run time in 00(min):")
+                    timesec=input("Input your second(s) run time in 00(secs):")
+                    try:
+                        timehr=float(timehr)
+                        timemin=float(timemin)
+                        timesec=float(timesec)
+                        if 00 <= timehr <= 59 and 00 <= timemin <=59 and 00 <= timesec <=59:
+
+                            timehr=to_seconds(timehr,'hr')#hrs converted to seconds
+
+                            timemin=to_seconds(timemin,'min')#mins converted to seconds
+
+                            timesec=to_seconds(timesec,'s')#seconds converted to seconds
+                            timetotal=timehr+timemin+timesec
+
+
+
+                            break
+                    except:
+                        print("your time is entered incorrectly please enter in this format 00(hr):00(min):00(secs) e.g 1(hr):30(min):0(sec). Time must be an integer")
+
+            timeoutput=input("Enter what time unit you want to calculate your pace in 'hr'(h),'min'(m),'sec'(s):")
+            print("ringer")
+            while True:
+                    try:
+                        if timeoutput in ['hr','h','min','m','sec']:
+                            timetotal=from_seconds(timetotal,timeoutput)
+
+                            break
+                    except:
+                        print("Please enter either of the units in the format below 'hr','h','min','m','sec'")
+
+            pace=calculator(distance=distance,pace=None,time=timetotal)
+            return str(pace) + timeoutput + "/" + distanceunit
 
 
 print(run())
-print(to_meters(10,standardize_units('miles')))
-print(from_meters(1600, standardize_units('mile')))
-print(to_seconds(30,'s'))
-print(from_seconds(5400,'min'))
+# print(to_meters(10,standardize_units('miles')))
+# print(from_meters(1600, standardize_units('mile')))
+# print(to_seconds(30,'s'))
+# print(from_seconds(5400,'min'))
     # elif rundecision=='dp':
     #     timerun= input("Input your goal run time in 00(hr):00(mins):00(secs)")
     #     distancerun=input("Enter distance in miles(m) or kilometers(km):")
